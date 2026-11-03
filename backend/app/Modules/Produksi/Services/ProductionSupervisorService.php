@@ -37,7 +37,7 @@ class ProductionSupervisorService
             }
         }
 
-        return $options;
+        return $options->sortBy('label', SORT_NATURAL | SORT_FLAG_CASE)->values();
     }
 
     public function resolve(string $value, ?CopperBreakEntry $original = null): array

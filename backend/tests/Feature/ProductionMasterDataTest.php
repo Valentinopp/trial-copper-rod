@@ -323,4 +323,40 @@ class ProductionMasterDataTest extends TestCase
             'snapshot' => $snapshot, 'updates' => [], 'calls' => [['path' => '', 'method' => 'openCreate', 'params' => []]],
         ]]], ['X-Livewire' => 'true'])->assertOk()->assertSee('Bobot rod per meter');
     }
+
+    public function test_dropdown_options_are_sorted_naturally_and_alphabetically(): void
+    {
+        $service = app(\App\Modules\Produksi\Services\ProductionMasterDataService::class);
+
+        // Ensure crystallizers are naturally sorted (1, 2, 3, 4, 10...)
+        ProductionReference::where('section', 'crystallizers')->delete();
+        $this->reference('crystallizers', '3', ['name' => 'Crystalizer 3']);
+        $this->reference('crystallizers', '1', ['name' => 'Crystallizer 1']);
+        $this->reference('crystallizers', '10', ['name' => 'Crystallizer 10']);
+        $this->reference('crystallizers', '2', ['name' => 'Crystallizer 2']);
+        $this->reference('crystallizers', '4', ['name' => 'Crystalizer 4']);
+
+        $crystallizerLabels = $service->options('crystallizers')->pluck('label')->all();
+        $this->assertSame([
+            '1 — Crystallizer 1',
+            '2 — Crystallizer 2',
+            '3 — Crystalizer 3',
+            '4 — Crystalizer 4',
+            '10 — Crystallizer 10',
+        ], $crystallizerLabels);
+
+        // Ensure take-ups are naturally sorted
+        $takeupLabels = $service->options('take-ups')->pluck('label')->all();
+        $expectedTakeups = ['1XL', '1XR', '2YL', '2YR', '3XL', '3XR', '4YL', '4YR', '5XL', '5XR', '6YL', '6YR'];
+        $this->assertSame($expectedTakeups, $takeupLabels);
+
+        // Ensure supervisor options are naturally sorted A-Z
+        $this->supervisor('Zul', 'SPV');
+        $this->supervisor('Agus', 'SPV');
+        $this->supervisor('Budi', 'SPV');
+        $supervisorLabels = app(ProductionSupervisorService::class)->options()->pluck('label')->all();
+        $sortedSupervisorLabels = $supervisorLabels;
+        natcasesort($sortedSupervisorLabels);
+        $this->assertSame(array_values($sortedSupervisorLabels), $supervisorLabels);
+    }
 }

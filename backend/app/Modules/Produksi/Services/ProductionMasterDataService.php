@@ -22,7 +22,7 @@ class ProductionMasterDataService
             $options->push(['value' => $original, 'label' => $original.' (riwayat)']);
         }
 
-        return $options;
+        return $options->sortBy('label', SORT_NATURAL | SORT_FLAG_CASE)->values();
     }
 
     public function resolve(string $section, string $value, string $field, ?string $original = null, ?int $originalId = null, bool $required = true): ?ProductionReference
