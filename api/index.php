@@ -1,9 +1,5 @@
 <?php
 
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
-
 // Inisialisasi direktori storage di /tmp untuk lingkungan serverless Vercel
 $storageDirs = [
     '/tmp/storage/app/public',

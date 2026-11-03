@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\URL;
 use App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,6 +16,10 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        if ($this->app->environment('production') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')) {
+            URL::forceScheme('https');
+        }
+
         Gate::define('access-erp', fn (User $user) => $user->is_active);
         Gate::define('access-all-modules', fn (User $user) => $user->is_active && $user->role->hasFullAccess());
         Gate::define('access-master-data', fn (User $user) => $user->is_active && $user->role === \App\Enums\UserRole::SuperAdmin);
