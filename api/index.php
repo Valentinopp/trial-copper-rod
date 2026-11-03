@@ -27,24 +27,13 @@ $cacheEnv = [
     'APP_CONFIG_CACHE' => '/tmp/storage/bootstrap/cache/config.php',
     'APP_ROUTES_CACHE' => '/tmp/storage/bootstrap/cache/routes.php',
     'APP_EVENTS_CACHE' => '/tmp/storage/bootstrap/cache/events.php',
+    'VIEW_COMPILED_PATH' => '/tmp/storage/framework/views',
 ];
 
 foreach ($cacheEnv as $k => $v) {
     $_ENV[$k] = $v;
     $_SERVER[$k] = $v;
     putenv("{$k}={$v}");
-}
-
-// Copy pre-built bootstrap cache ke /tmp bila tersedia
-$bootstrapSource = __DIR__ . '/../backend/bootstrap/cache';
-if (is_dir($bootstrapSource)) {
-    foreach (['packages.php', 'services.php'] as $file) {
-        $src = $bootstrapSource . '/' . $file;
-        $dst = '/tmp/storage/bootstrap/cache/' . $file;
-        if (file_exists($src) && !file_exists($dst)) {
-            @copy($src, $dst);
-        }
-    }
 }
 
 if (!extension_loaded('pdo_pgsql')) {

@@ -10,7 +10,7 @@ if (($_ENV['APP_ENV'] ?? $_SERVER['APP_ENV'] ?? getenv('APP_ENV')) !== 'testing'
     \Dotenv\Dotenv::createImmutable(dirname(__DIR__, 2), ['.env.local', '.env'])->safeLoad();
 }
 
-return Application::configure(basePath: dirname(__DIR__))
+$app = Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
         commands: __DIR__.'/../routes/console.php',
