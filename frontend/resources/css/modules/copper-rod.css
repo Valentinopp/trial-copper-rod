@@ -1,0 +1,105 @@
+/* Copper Rod: quiet, neutral surfaces inspired by the operations workspace. */
+.formula-scope-note { font-size: 12px; color: #626269; line-height: 1.7; }
+.formula-scope-note { margin: 16px 0; }
+.board-form-dialog { width: min(1080px, calc(100% - 40px)); max-height: calc(100dvh - 48px); margin: auto; padding: 0; overflow-y: auto; color: inherit; }
+.board-form-dialog:not([open]) { display: none; }
+.board-form-dialog::backdrop { background: rgba(15, 23, 42, .45); }
+.copper-warning-dialog { width: min(440px, calc(100% - 32px)); max-height: calc(100dvh - 48px); margin: auto; padding: 28px; overflow-y: auto; border: 1px solid #e7e7e9; border-radius: 18px; background: #fff; color: #242426; text-align: center; box-shadow: 0 24px 64px #00000026; }
+.copper-warning-dialog:not([open]) { display: none; }
+.copper-warning-dialog::backdrop { background: rgba(15, 23, 42, .45); }
+.copper-warning-icon { display: grid; place-items: center; width: 56px; height: 56px; margin: 0 auto 16px; border-radius: 50%; color: #b42335; background: #fff0f1; }
+.copper-warning-dialog h2 { margin: 0 0 10px; font-size: 19px; font-weight: 700; }
+.copper-warning-messages { margin: 0 0 22px; overflow-wrap: anywhere; }
+.copper-warning-messages p { margin: 8px 0; font-size: 13px; line-height: 1.65; color: #55555b; }
+.copper-warning-dialog > .button { min-width: 120px; }
+.board-delete-actions { display: flex; justify-content: center; gap: 12px; }
+.board-delete-actions .button { min-width: 120px; }
+.board-delete-button { background: #b42335; border-color: #b42335; color: #fff; }
+.board-delete-button:hover { background: #981c2c; border-color: #981c2c; }
+html:has(.copper-warning-dialog[open]) { overflow: hidden; }
+#board-form .form-section-title > span { color: var(--brand-navy); background: var(--accent-soft); border-color: var(--accent-border); }
+#board-form .required-marker, #board-form .required-fields-note > span { color: #b42335; }
+#board-form .production-time-group legend { color: #45454a; }
+.board-form-dialog > .panel-head { position: sticky; top: 0; z-index: 3; background: #fff; border-bottom: 1px solid var(--line); }
+.board-form-dialog .board-weight-grid { grid-template-columns: minmax(0, 1fr); }
+.board-form-dialog .board-weight-grid .board-remarks-field { grid-column: 1 / -1; }
+@media (min-width: 1101px) { .board-form-dialog .board-weight-grid.has-reject { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1101px) { .board-form-dialog .production-time-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+html:has(.board-form-dialog[open]) { overflow: hidden; }
+@media (max-width: 600px) { .board-form-dialog { width: calc(100% - 20px); max-height: calc(100dvh - 24px); } }
+.copper-rod-workspace { --line: #e7e7e9; }
+.copper-rod-workspace .sidebar { background: #fafafa; }
+.nav-icon .copper-coil-icon { width: 18px; height: 18px; flex-shrink: 0; }
+.copper-sidebar-heading { justify-content: flex-start; gap: 10px; }
+.copper-sidebar-heading .nav-text { flex: 1; }
+.copper-sidebar-heading .nav-icon { display: inline-flex; align-items: center; justify-content: center; }
+.copper-sidebar-group[open] > .copper-sidebar-heading { color: var(--brand-navy); }
+.copper-rod-header { display: flex; align-items: center; justify-content: flex-start; padding-bottom: 20px; margin-bottom: 26px; }
+.copper-rod-navigation { gap: 5px; padding: 4px; border: 1px solid #e7e7e9; border-radius: 10px; background: #fafafa; }
+.copper-rod-workspace .copper-rod-link { display: inline-flex; justify-content: center; gap: 8px; padding: 9px 13px; min-height: 38px; border: 1px solid transparent; background: transparent; color: #616167; font-size: 12px; white-space: nowrap; }
+.copper-rod-workspace .copper-rod-link:hover { background: #f6f9fe; color: var(--brand-navy); }
+.copper-rod-workspace .copper-rod-link.is-active { background: var(--accent-soft); border-color: transparent; color: var(--brand-navy); box-shadow: inset 3px 0 0 var(--brand-red); font-weight: 650; }
+.copper-rod-workspace .copper-rod-link.is-active svg { color: var(--brand-steel); }
+.copper-rod-link svg { flex-shrink: 0; }
+.copper-rod-workspace .page-title h1,
+.copper-rod-workspace h2,
+.copper-rod-workspace .form-section-title strong,
+.copper-rod-workspace .breadcrumb strong { color: var(--brand-navy); }
+.copper-rod-workspace .stat-copy strong { color: #242426; }
+.monthly-output-page .stat-copy strong,
+.copper-stats .stat-copy strong { font-weight: 700; }
+.copper-rod-workspace .output-table { min-width: 1800px; }
+.copper-rod-workspace .output-table td.plan-actual-difference { color: #b42335; font-weight: 600; }
+.monthly-output-filter { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; padding: 20px; }
+.monthly-output-page .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.monthly-output-filter h2 { margin: 4px 0 0; font-size: 20px; }
+.monthly-output-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.monthly-output-controls input { min-height: 40px; }
+.monthly-output-scroll-hint, .monthly-output-note { margin: 0; padding: 0 20px 16px; font-size: 12px; line-height: 1.6; color: #68778b; }
+.monthly-output-note { padding-top: 16px; }
+.monthly-output-scroll { overflow: auto; max-height: 680px; border-top: 1px solid #344256; border-bottom: 1px solid #344256; }
+.monthly-output-scroll:focus-visible { outline: 2px solid var(--brand-blue); outline-offset: 3px; }
+.monthly-output-table { --shift-width: 50px; --metric-width: 210px; border-collapse: separate; border-spacing: 0; width: max-content; min-width: 100%; font-size: 12px; font-variant-numeric: tabular-nums; color: #203f6c; }
+.monthly-output-table th, .monthly-output-table td { box-sizing: border-box; min-width: 82px; padding: 9px 10px; border-right: 1px solid #6a7687; border-bottom: 1px solid #6a7687; text-align: right; white-space: nowrap; background: #fff; }
+.monthly-output-table thead th { position: sticky; top: 0; z-index: 3; height: 36px; text-align: center; background: #f3f6fb; font-weight: 600; color: var(--brand-navy); }
+.monthly-output-table thead tr:nth-child(2) th { top: 36px; }
+.monthly-output-table .monthly-month { font-size: 14px; }
+.monthly-output-table .monthly-shift { position: sticky; left: 0; z-index: 2; min-width: var(--shift-width); width: var(--shift-width); text-align: center; }
+.monthly-output-table .monthly-metric { position: sticky; left: var(--shift-width); z-index: 2; min-width: var(--metric-width); width: var(--metric-width); text-align: left; font-weight: 500; border-right: 2px solid #344256; }
+.monthly-output-table .monthly-metric-wide { left: 0; min-width: calc(var(--shift-width) + var(--metric-width)); }
+.monthly-output-table thead .monthly-shift, .monthly-output-table thead .monthly-metric { z-index: 5; text-align: center; }
+.monthly-output-table tbody tr:nth-child(odd) > * { background: #fff; }
+.monthly-output-table tbody tr:nth-child(even) > * { background: #f2f3f5; }
+.monthly-output-table .monthly-row-actual > * { font-weight: 700; }
+.monthly-output-table .monthly-row-calculated > * { font-weight: 700; border-top: 1px solid #344256; }
+.monthly-output-table .monthly-row-difference td { color: #b42335; font-weight: 600; }
+.monthly-output-table .monthly-row-shift > * { border-top: 1px solid #344256; }
+.monthly-output-table td.is-today, .monthly-output-table th.is-today { box-shadow: inset 2px 0 #7d9dc5, inset -2px 0 #7d9dc5; }
+.monthly-output-definitions { padding: 18px 20px; color: #68778b; font-size: 12px; line-height: 1.7; }
+.monthly-output-definitions summary { cursor: pointer; color: var(--brand-navy); font-weight: 600; }
+.monthly-output-definitions ul { margin: 14px 0 0; padding-left: 18px; }
+.monthly-output-definitions li + li { margin-top: 8px; }
+@media (max-width: 680px) {
+  .monthly-output-filter { padding: 16px; }
+  .monthly-output-controls { width: 100%; }
+  .monthly-output-controls .field { flex: 1; }
+  .monthly-output-table { --shift-width: 40px; --metric-width: 168px; font-size: 11px; }
+  .monthly-output-table th, .monthly-output-table td { padding: 8px; min-width: 76px; }
+}
+.copper-rod-workspace .page-title h1 { font-weight: 700; }
+.copper-rod-workspace .board-table { min-width: 2040px; table-layout: auto; }
+.copper-rod-workspace .board-table th, .copper-rod-workspace .board-table td { width: auto; }
+.copper-rod-workspace .page-title .eyebrow { color: #77777d; }
+.copper-rod-workspace .button-secondary { color: #55555b; border-color: #e1e1e4; }
+.copper-rod-workspace .panel, .copper-rod-workspace .stat-card { border-color: #e7e7e9; border-radius: 16px; box-shadow: 0 1px 2px #00000003; }
+.copper-rod-workspace .chip-button.is-selected { background: #f0f0f2; color: #242426; border-color: #d5d5da; }
+.copper-rod-workspace .data-table th { background: #f7f7f8; }
+.copper-rod-workspace .data-table tbody tr:hover td { background: #fafafa; }
+@media (max-width: 600px) {
+  .copper-rod-navigation { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+  .copper-rod-workspace .copper-rod-link { justify-content: flex-start; padding: 9px; font-size: 11px; }
+}
+.monthly-output-page .stats-grid.stats-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 600px) {
+    .monthly-output-page .stats-grid.stats-two { grid-template-columns: 1fr; }
+}

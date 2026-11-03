@@ -1,0 +1,34 @@
+.login-page { margin: 0; min-width: 320px; min-height: 100dvh; background: #fff; color: #242426; font-family: 'DM Sans', sans-serif; }
+.login-shell { min-height: 100dvh; display: grid; grid-template-columns: minmax(360px, 1fr) minmax(480px, 1fr); padding: 0; box-sizing: border-box; background: #fff; }
+.login-intro { display: flex; flex-direction: column; justify-content: center; padding: clamp(36px, 5vw, 76px); border-radius: 0; color: #fff; background: #183255; position: relative; overflow: hidden; container-type: inline-size; }
+.login-intro-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% center; filter: grayscale(1); opacity: .58; mix-blend-mode: luminosity; }
+.login-intro::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(24, 50, 85, .96) 0%, rgba(24, 50, 85, .8) 40%, rgba(24, 50, 85, .58) 72%, rgba(24, 50, 85, .38) 100%); pointer-events: none; }
+.login-page .login-brand { width: fit-content; margin: 0 auto 36px; padding: 0; text-decoration: none; align-items: center; background: transparent; border: 0; box-shadow: none; }
+.login-brand .brand-main, .login-brand .brand-logo, .login-brand .brand-logo img, .login-brand .brand-copy { background: transparent; border: 0; box-shadow: none; }
+.login-intro-copy { width: 100%; max-width: none; margin: 0; position: relative; z-index: 1; }
+.login-eyebrow { display: block; color: #718098; font-size: 10px; font-weight: 700; letter-spacing: 1.8px; }
+.login-intro h1 { margin: 0; color: #fff; font-size: clamp(44px, 14cqw, 116px); font-weight: 600; letter-spacing: -.04em; line-height: 1.08; }
+.login-panel { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 64px 40px 28px; gap: 64px; }
+.login-card { width: min(100%, 390px); }
+.login-heading { text-align: center; }
+.login-heading h2 { margin: 12px 0 10px; color: #242426; font-size: 29px; font-weight: 700; line-height: 1.25; letter-spacing: -.9px; }
+.login-heading p { margin: 0; font-size: 13px; line-height: 1.7; color: #737780; }
+.login-form { margin-top: 32px; display: grid; gap: 21px; }
+.login-field { display: grid; gap: 9px; }
+.login-field label { color: #414751; font-size: 12px; font-weight: 600; }
+.login-field input { width: 100%; box-sizing: border-box; min-height: 48px; padding: 13px 15px; background: #fff; border: 1px solid #dfe3e9; border-radius: 9px; color: #242426; font: inherit; font-size: 13px; outline: none; transition: border-color .15s, box-shadow .15s; }
+.login-field input::placeholder { color: #a1a6ae; }
+.login-field input:focus { border-color: #203f6c; box-shadow: 0 0 0 3px #203f6c12; }
+.login-field input[aria-invalid=true] { border-color: #b42335; }
+.login-submit { display: flex; justify-content: center; align-items: center; gap: 12px; width: 100%; min-height: 48px; margin-top: 4px; border: 1px solid #203f6c; border-radius: 9px; background: #203f6c; color: #fff; cursor: pointer; font: inherit; font-size: 13px; font-weight: 600; }
+.login-submit:hover { background: #193355; }
+.login-submit:focus-visible { outline: 3px solid #9db4d5; outline-offset: 3px; }
+.login-error { padding: 13px 15px; margin-top: 24px; border: 1px solid #f1d3d8; border-radius: 9px; background: #fff3f5; color: #a12134; font-size: 12px; line-height: 1.65; }
+.login-help { margin: 25px 0 0; text-align: center; color: #858991; font-size: 11px; line-height: 1.7; }
+.login-copyright { margin: 0; color: #999da5; font-size: 10px; }
+.topbar-logout { margin: 0 0 0 auto; flex-shrink: 0; }
+.workspace-switch { display: inline-flex; align-items: center; gap: 7px; flex-shrink: 0; min-height: 36px; padding: 8px 11px; font-size: 12px; }
+.topbar-logout button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 36px; padding: 8px 13px; border: 1px solid #e4c1c6; border-radius: 8px; background: transparent; color: #b42335; cursor: pointer; font: inherit; font-size: 12px; font-weight: 600; transition: background .15s, color .15s, border-color .15s; }
+.topbar-logout button:hover, .topbar-logout button:focus-visible { color: #fff; border-color: #b42335; background: #b42335; }
+.topbar-logout button:focus-visible { outline: 2px solid #b42335; outline-offset: 3px; }
+@media (max-width: 850px) { .login-shell { grid-template-columns: minmax(0, 1fr); padding: 0; } .login-intro { padding: 40px 30px; } .login-intro h1 { font-size: clamp(40px, 12cqw, 78px); } .login-panel { padding: 40px 24px 24px; gap: 40px; } }

@@ -1,0 +1,70 @@
+/* Shared navigation appearance. Menu structure and behavior stay in Blade/Livewire. */
+:root {
+    --navigation-text: #596579;
+    --navigation-hover: #f5f6f8;
+    --navigation-active: var(--accent-soft);
+}
+.sidebar .side-nav { gap: 4px; }
+.sidebar .nav-section-header {
+    color: #7b8594; font-size: 10px; font-weight: 600; letter-spacing: .7px; line-height: 1.6;
+}
+.sidebar .nav-item, .sidebar .nav-group-trigger, .sidebar .nav-subgroup-trigger {
+    min-height: 40px; padding: 8px 10px; border: 0; border-radius: 7px;
+    color: var(--navigation-text); background: transparent; box-shadow: none;
+    transition: background-color .15s ease, color .15s ease;
+}
+.sidebar .nav-item:hover, .sidebar .nav-group-trigger:hover, .sidebar .nav-subgroup-trigger:hover {
+    color: var(--brand-navy); background: var(--navigation-hover);
+}
+.sidebar .nav-item.active {
+    color: var(--brand-navy); background: var(--navigation-active); box-shadow: none;
+}
+.sidebar .nav-group-trigger.open, .sidebar .nav-subgroup-trigger.open,
+.sidebar .purchasing-sidebar-trigger.is-current-module {
+    color: var(--brand-navy); background: transparent; box-shadow: none;
+}
+.sidebar .nav-group-trigger.open:hover, .sidebar .nav-subgroup-trigger.open:hover,
+.sidebar .purchasing-sidebar-trigger.is-current-module:hover { background: var(--navigation-hover); }
+.sidebar .nav-text strong { font-size: 13px; font-weight: 450; line-height: 1.45; }
+.sidebar .nav-item.active .nav-text strong { font-weight: 650; }
+.sidebar .nav-icon, .sidebar .nav-item.active .nav-icon {
+    width: 20px; height: 20px; border-radius: 0; color: currentColor; background: transparent;
+}
+.sidebar .nav-Subtree, .sidebar .nav-leaf-list { border-left-color: #edf0f4; }
+.sidebar .nav-Subtree .nav-item, .sidebar .nav-leaf-list .nav-item,
+.sidebar .purchasing-sidebar-link { min-height: 36px; padding: 7px 12px; border-radius: 6px; }
+.sidebar .nav-Subtree .nav-text strong, .sidebar .nav-leaf-list .nav-text strong,
+.sidebar .purchasing-sidebar-link .nav-text strong { font-size: 12px; font-weight: 450; }
+.sidebar .nav-Subtree .nav-item.active .nav-text strong,
+.sidebar .nav-leaf-list .nav-item.active .nav-text strong,
+.sidebar .purchasing-sidebar-link.active .nav-text strong { font-weight: 650; }
+.sidebar .purchasing-sidebar-trigger .nav-text strong { font-size: 13px; font-weight: 600; }
+.sidebar .master-nav-group + .master-nav-group { border-top-color: #edf0f4; }
+
+/* Existing horizontal menus (Copper Rod and Inventory Control). */
+.copper-rod-navigation { gap: 4px; padding: 4px; border-color: #edf0f4; border-radius: 9px; background: #fafbfc; }
+.copper-rod-navigation .copper-rod-link,
+.copper-rod-workspace .copper-rod-navigation .copper-rod-link {
+    min-height: 36px; padding: 7px 12px; border: 1px solid transparent; border-radius: 6px;
+    font-size: 12px; font-weight: 450; line-height: 1.45; color: var(--navigation-text);
+    background: transparent; box-shadow: none; transition: background-color .15s ease, color .15s ease;
+}
+.copper-rod-navigation .copper-rod-link:hover,
+.copper-rod-workspace .copper-rod-navigation .copper-rod-link:hover { color: var(--brand-navy); background: var(--navigation-hover); border-color: transparent; }
+.copper-rod-navigation .copper-rod-link.is-active,
+.copper-rod-workspace .copper-rod-navigation .copper-rod-link.is-active {
+    color: var(--brand-navy); background: var(--navigation-active); border-color: transparent; box-shadow: none; font-weight: 650;
+}
+.copper-rod-navigation .copper-rod-link svg { color: currentColor; }
+.sidebar .nav-item:focus-visible, .sidebar .nav-group-trigger:focus-visible,
+.sidebar .nav-subgroup-trigger:focus-visible, .copper-rod-navigation .copper-rod-link:focus-visible {
+    outline: 2px solid var(--brand-steel); outline-offset: 2px;
+}
+@media (max-width: 600px) {
+    .copper-rod-navigation .copper-rod-link,
+    .copper-rod-workspace .copper-rod-navigation .copper-rod-link { padding: 9px; font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .sidebar .nav-item, .sidebar .nav-group-trigger, .sidebar .nav-subgroup-trigger,
+    .copper-rod-navigation .copper-rod-link { transition: none; }
+}

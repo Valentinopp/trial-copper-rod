@@ -1,0 +1,34 @@
+.master-search { padding: 0 20px 20px; max-width: 460px; }
+.master-table { min-width: 800px; }
+.master-table td { white-space: normal; }
+.master-description { max-width: 320px; white-space: pre-line !important; overflow-wrap: anywhere; }
+.master-status > span:last-child { display: flex; align-items: center; gap: 8px; min-height: 44px; }
+.master-status input[type="checkbox"] { width: 18px; height: 18px; min-height: 18px; margin: 0; padding: 0; accent-color: var(--navy); }
+.partner-item-picker { display: grid; gap: 24px; margin: 12px 0 24px; }
+.partner-item-picker h3 { margin: 0 0 12px; font-size: 14px; }
+.partner-item-picker .field { margin-bottom: 12px; }
+.partner-item-table { min-width: 480px; }
+.partner-item-table td { white-space: normal; overflow-wrap: anywhere; }
+.master-row-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.master-delete-button { color: #b42335; border-color: #edd0d5; background: #fff; }
+.master-delete-button:hover { color: #fff; border-color: #b42335; background: #b42335; }
+.copper-warning-messages .master-delete-error { color: #b42335; }
+
+/* Grouped navigation within Master Data. */
+.master-nav-group { display: block; }
+.master-nav-group + .master-nav-group { margin-top: 4px; }
+.master-nav-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 40px; margin: 0; padding: 10px; color: #59687c; font-size: 12px; line-height: 1.5; font-weight: 600; border-radius: 7px; cursor: pointer; list-style: none; }
+.master-nav-heading::-webkit-details-marker { display: none; }
+.master-nav-heading:hover { color: var(--brand-navy); background: #f6f9fe; }
+.master-nav-heading:focus-visible { outline: 2px solid var(--brand-blue); outline-offset: 2px; }
+.master-nav-chevron { flex-shrink: 0; transition: transform .18s ease; }
+.master-nav-group[open] > .master-nav-heading .master-nav-chevron { transform: rotate(180deg); }
+.master-nav-links { display: flex; flex-direction: column; gap: 3px; margin-top: 3px; padding-left: 10px; }
+.master-nav-group .nav-item { min-height: 40px; }
+.access-permissions { margin: 20px 0; padding: 16px; border: 1px solid #dce4ef; border-radius: 12px; min-width: 0; }
+.access-permissions legend { padding: 0 6px; font-weight: 600; }
+.access-permission-module h3 { margin: 0 0 8px; font-size: 14px; }
+.access-permission-module > p { margin: 0 0 12px; color: #667085; font-size: 13px; }
+.access-permission-option { display: flex; align-items: center; gap: 10px; padding: 8px 0; font-size: 14px; }
+.access-permission-option input[type="checkbox"] { width: 18px; height: 18px; min-height: 18px; margin: 0; padding: 0; accent-color: var(--navy); }
+.access-permission-module + .access-permission-module { margin-top: 20px; padding-top: 20px; border-top: 1px solid #e8edf4; }

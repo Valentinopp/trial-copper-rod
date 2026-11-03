@@ -1,0 +1,41 @@
+/* Styles khusus modul Purchasing. */
+.procurement-table { min-width: 720px; }
+.procurement-table td { white-space: normal; min-width: 90px; }
+.procurement-table .procurement-empty { padding: 30px 20px; text-align: center; color: #626269; }
+.procurement-status { display: inline-block; padding: 5px 8px; border-radius: 6px; background: var(--blue-soft); color: var(--navy); font-size: 11px; white-space: nowrap; }
+.procurement-pagination { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; border-top: 1px solid var(--line); padding: 14px 20px; font-size: 12px; color: #626269; }
+
+/* Purchasing navigation lives in the sidebar. */
+.sidebar .purchasing-sidebar-group { margin-top: 14px; }
+.sidebar .purchasing-sidebar-trigger { width: 100%; min-height: 40px; font: inherit; text-align: left; cursor: pointer; border-radius: 7px; background: transparent; box-shadow: none; color: #596579; }
+.sidebar .purchasing-sidebar-trigger.is-current-module { color: var(--brand-navy); background: transparent; box-shadow: none; }
+.sidebar .purchasing-sidebar-trigger .nav-text strong { font-size: 13px; font-weight: 600; }
+.sidebar .purchasing-sidebar-trigger:hover { background: #f5f6f8; }
+.sidebar .purchasing-sidebar-chevron { margin-left: auto; flex-shrink: 0; transition: transform .15s ease; }
+.sidebar .purchasing-sidebar-chevron.is-open { transform: rotate(90deg); }
+.sidebar .purchasing-sidebar-submenu { display: grid; gap: 2px; margin: 4px 0 0 19px; padding-left: 10px; border-left: 1px solid #edf0f4; }
+.sidebar .purchasing-sidebar-link { min-height: 36px; padding: 7px 12px; border-radius: 6px; color: #596579; box-shadow: none; transition: background-color .15s ease, color .15s ease; }
+.sidebar .purchasing-sidebar-link:hover { color: var(--brand-navy); background: #f5f6f8; }
+.sidebar .purchasing-sidebar-link.active { color: var(--brand-navy); background: var(--accent-soft); box-shadow: none; }
+.sidebar .purchasing-sidebar-link.active .nav-text strong { font-weight: 650; }
+.sidebar .purchasing-sidebar-link .nav-text strong { font-size: 12px; font-weight: 450; line-height: 1.45; white-space: normal; }
+.sidebar .purchasing-sidebar-reveal { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows .24s cubic-bezier(.22, 1, .36, 1), opacity .2s ease; }
+.sidebar .purchasing-sidebar-reveal.is-open { grid-template-rows: 1fr; opacity: 1; }
+.sidebar .purchasing-sidebar-reveal > .purchasing-sidebar-submenu { min-height: 0; overflow: hidden; margin-top: 0; padding-top: 0; padding-bottom: 0; transition: margin-top .24s cubic-bezier(.22, 1, .36, 1); }
+.sidebar .purchasing-sidebar-reveal.is-open > .purchasing-sidebar-submenu { margin-top: 5px; }
+.purchasing-development { min-height: 320px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 48px 24px; text-align: center; }
+.purchasing-development-icon { display: grid; place-items: center; width: 72px; height: 72px; border-radius: 20px; background: var(--accent-soft); color: var(--brand-steel); }
+.purchasing-development-badge { padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; font-size: 11px; color: var(--muted); }
+.purchasing-development h2 { margin: 0; font-size: clamp(20px, 3vw, 28px); color: var(--brand-navy); }
+.purchasing-development p { margin: 0; font-size: 16px; }
+.purchasing-development small { max-width: 440px; color: var(--muted); line-height: 1.7; }
+@media (prefers-reduced-motion: reduce) {
+    .sidebar .purchasing-sidebar-chevron { transition: none; }
+}
+@media (prefers-reduced-motion: reduce) { .sidebar .purchasing-sidebar-reveal { transition: none; } }
+
+@media (prefers-reduced-motion: reduce) { .sidebar .purchasing-sidebar-reveal > .purchasing-sidebar-submenu { transition: none; } }
+
+.sidebar .purchasing-attention-target { position: relative; padding-right: 24px; }
+.purchasing-attention-anchor { position: absolute; top: 5px; right: 5px; display: inline-flex; line-height: 0; z-index: 1; }
+.purchasing-attention-dot { display: inline-block; width: 7px; height: 7px; flex-shrink: 0; border-radius: 50%; background: #d92d20; box-shadow: 0 0 0 2px #fff; }

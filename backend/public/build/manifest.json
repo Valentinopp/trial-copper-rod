@@ -1,0 +1,22 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-Bee7_qMn.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-ByIvKvdh.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/modules/produksi/monthly-output-excel.js"
+    ]
+  },
+  "resources/js/modules/produksi/monthly-output-excel.js": {
+    "file": "assets/monthly-output-excel-lLVwh0MK.js",
+    "name": "monthly-output-excel",
+    "src": "resources/js/modules/produksi/monthly-output-excel.js",
+    "isDynamicEntry": true
+  }
+}

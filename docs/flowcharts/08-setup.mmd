@@ -1,0 +1,24 @@
+flowchart TD
+    A([Jalankan setup.ps1]) --> B[Periksa alat dan versi runtime]
+    B --> C{Preflight berhasil?}
+    C -->|Tidak| X([Berhenti dengan pesan kegagalan])
+    C -->|Ya| D{File env sudah ada?}
+    D -->|Tidak| E[Salin contoh env]
+    E --> F([Berhenti agar konfigurasi diisi])
+    D -->|Ya| G[Install Composer dan cek platform]
+    G --> H{Dependency berhasil?}
+    H -->|Tidak| X
+    H -->|Ya| I[Bersihkan cache dan cek PostgreSQL]
+    I --> J{Konfigurasi dan koneksi valid?}
+    J -->|Tidak| X
+    J -->|Ya| K{APP_KEY sudah terisi?}
+    K -->|Tidak| L[Buat APP_KEY]
+    K -->|Ya| M[Jalankan migration]
+    L -->|Berhasil| M
+    L -->|Gagal| X
+    M -->|Berhasil| N[Install dependency frontend]
+    M -->|Gagal| X
+    N -->|Berhasil| O[Build aset Vite]
+    N -->|Gagal| X
+    O -->|Berhasil| P([Setup selesai])
+    O -->|Gagal| X

@@ -1,0 +1,37 @@
+flowchart TD
+    A([Mulai kebutuhan penjualan]) --> B
+    subgraph M[Marketing]
+        B[Daftarkan material]
+        C[Simpan produk dan BoM]
+        D[Catat penjualan final]
+        B --> C --> D
+    end
+    subgraph IC[PPIC - Inventory Control]
+        E[Periksa kebutuhan penjualan]
+        F{Acuan kebutuhan valid?}
+        G[Simpan atau gunakan snapshot kebutuhan]
+        H{Bahan tersedia cukup?}
+        I{Ada kekurangan belum diajukan?}
+        J[Ajukan pembelian kekurangan]
+        K[Tunggu proses pengadaan berjalan]
+        L[Catat penerimaan aktual]
+        N[Perbarui pemeriksaan stok]
+        O[[Periksa ulang dan cadangkan bahan]]
+    end
+    subgraph PU[Purchasing]
+        P[Setujui dan buat pesanan]
+    end
+    subgraph PP[Production Plan]
+        Q([Penjualan menunggu perencanaan])
+    end
+    D --> E --> F
+    F -->|Tidak| R[Perbaiki BoM atau spesifikasi]
+    R --> E
+    F -->|Ya| G --> H
+    H -->|Tidak| I
+    I -->|Ya| J --> P --> L
+    I -->|Tidak| K --> L
+    L --> N --> H
+    H -->|Ya| O
+    O -->|Berhasil| Q
+    O -->|Stok berubah atau kurang| N

@@ -1,0 +1,250 @@
+/* Copper Rod uses the app bar and record cards on smaller screens. */
+.mobile-page-heading, .mobile-record-list, .mobile-exports { display: none; }
+
+/* Apple Human Interface Guidelines: Indeterminate Activity Indicator & Loading HUD */
+.apple-loading-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+}
+
+.apple-loading-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.22);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.apple-loading-hud {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-width: 128px;
+    padding: 22px 28px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(24px) saturate(190%);
+    -webkit-backdrop-filter: blur(24px) saturate(190%);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 22px;
+    box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.16), 0 4px 16px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    user-select: none;
+    -webkit-user-select: none;
+    transform: translateZ(0);
+}
+
+.apple-spinner-svg {
+    display: block;
+    width: 36px;
+    height: 36px;
+    color: #3c3c43;
+    animation: apple-spinner-spin 1s steps(12, end) infinite;
+}
+
+@keyframes apple-spinner-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.apple-loading-text {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "DM Sans", system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 590;
+    letter-spacing: -0.2px;
+    line-height: 1.25;
+    color: #1c1c1e;
+}
+
+/* Apple HIG spring / smooth fade transitions */
+.apple-fade-enter {
+    transition: opacity 0.18s ease-out;
+}
+.apple-fade-enter .apple-loading-hud {
+    transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.18s ease-out;
+}
+.apple-fade-enter-start {
+    opacity: 0;
+}
+.apple-fade-enter-start .apple-loading-hud {
+    transform: scale(0.92);
+    opacity: 0;
+}
+.apple-fade-enter-end {
+    opacity: 1;
+}
+.apple-fade-enter-end .apple-loading-hud {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.apple-fade-leave {
+    transition: opacity 0.15s ease-in;
+}
+.apple-fade-leave .apple-loading-hud {
+    transition: transform 0.15s ease-in, opacity 0.15s ease-in;
+}
+.apple-fade-leave-start {
+    opacity: 1;
+}
+.apple-fade-leave-start .apple-loading-hud {
+    transform: scale(1);
+    opacity: 1;
+}
+.apple-fade-leave-end {
+    opacity: 0;
+}
+.apple-fade-leave-end .apple-loading-hud {
+    transform: scale(0.95);
+    opacity: 0;
+}
+
+@media (max-width: 850px) {
+    .copper-rod-workspace .main-area { background: #f4f6fa; }
+    .copper-rod-workspace .content-area { background: transparent; padding: 16px 14px 28px; }
+    .copper-rod-workspace .topbar { min-height: 64px; padding-bottom: 10px; border-bottom-color: #e8edf4; }
+    .copper-rod-workspace .breadcrumb { display: none; }
+    .mobile-page-heading { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: 3px; }
+    .mobile-page-heading > span { color: #8490a2; font-size: 9px; font-weight: 600; letter-spacing: 1.2px; }
+    .mobile-page-heading > strong { color: var(--brand-navy); font-size: 19px; font-weight: 650; line-height: 1.25; letter-spacing: -.4px; }
+    /* Keep one accessible h1 while the app bar provides the visible title. */
+    .copper-rod-workspace .page-stack > .page-title > div:first-child {
+        position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+        overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+    }
+    .copper-rod-workspace .page-stack { gap: 14px; }
+    .copper-rod-workspace .page-title { margin: 0; gap: 0; }
+    .copper-rod-workspace .page-action .form-buttons { grid-template-columns: minmax(0, 1fr) auto; gap: 10px; }
+    .copper-rod-workspace .page-action .form-buttons > .button-primary { grid-column: 1; order: 0; border-radius: 12px; min-height: 46px; }
+    .copper-rod-workspace .page-action .desktop-export-action { display: none; }
+    .mobile-exports { display: block; grid-column: 2; order: 1; justify-self: end; }
+    .mobile-export-menu { position: relative; }
+    .mobile-exports .button { min-height: 46px; border-radius: 12px; }
+    .mobile-export-menu > summary { list-style: none; }
+    .mobile-export-menu > summary::-webkit-details-marker { display: none; }
+    .mobile-export-menu[open] > summary { background: #eaf0fa; border-color: #cddbee; color: var(--brand-navy); }
+    .mobile-export-options {
+        position: absolute; right: 0; top: calc(100% + 8px); z-index: 45; min-width: 190px;
+        padding: 6px; border: 1px solid #e2e8f2; border-radius: 14px; background: #fff; box-shadow: 0 12px 32px #203f6c1f;
+    }
+    .mobile-export-options > button { display: flex; justify-content: space-between; align-items: center; gap: 16px; width: 100%; min-height: 46px; padding: 10px 12px; border: 0; border-radius: 9px; background: #fff; color: #2b4264; font-size: 14px; text-align: left; }
+    .mobile-export-options > button:hover { background: #f1f5fc; }
+    .mobile-export-options > button > span { color: #8995a6; font-size: 11px; }
+    .copper-rod-workspace .desktop-record-view { display: none; }
+    .copper-rod-workspace .skeleton-table-wrap { display: none !important; }
+    .copper-rod-workspace .mobile-record-panel { overflow: visible; border: 0; background: transparent; box-shadow: none; }
+    .copper-rod-workspace .panel-head { gap: 12px; padding: 14px; }
+    .copper-rod-workspace .mobile-record-panel > .panel-head { padding: 14px 0 12px; }
+    .copper-rod-workspace .mobile-record-panel .empty-state { background: #fff; border: 1px solid #e4e9f2; border-radius: 16px; }
+    .copper-rod-workspace .panel-head h2 { font-size: 15px; font-weight: 600; }
+
+    /* Hide long verbose explanatory texts on mobile (Apple HIG clarity) */
+    .copper-rod-workspace .panel-head p,
+    .copper-rod-workspace .crystal-dashboard-note,
+    .copper-rod-workspace .copper-estimate-help,
+    .copper-rod-workspace .crystal-chart-title p,
+    .copper-rod-workspace .crystal-chart-empty span,
+    .copper-rod-workspace .crystal-bar-item > small,
+    .copper-rod-workspace .mobile-record-panel .empty-state p,
+    .copper-rod-workspace .empty-state p,
+    .copper-rod-workspace .monthly-output-scroll-hint,
+    .copper-rod-workspace .monthly-output-note,
+    .copper-rod-workspace .board-form-dialog > .panel-head p,
+    .copper-rod-workspace .board-form-dialog .form-section-title small,
+    .copper-rod-workspace .board-form-dialog .production-time-group > p,
+    .copper-rod-workspace .board-form-dialog .inline-calculation > span,
+    .copper-rod-workspace .board-form-dialog .plan-actual-context small,
+    .copper-rod-workspace .board-form-dialog .field > small:not([role="alert"]),
+    .copper-rod-workspace .board-form-dialog .form-footer > .form-hint,
+    .copper-rod-workspace .copper-source-summary .copper-source-caption,
+    .copper-rod-workspace .copper-source-empty,
+    .copper-rod-workspace .board-delete-dialog #board-delete-description p:last-child {
+        display: none !important;
+    }
+
+    .copper-rod-workspace .panel-head .search-field { width: 100%; height: 46px; background: #fff; border-color: #e1e7f0; border-radius: 12px; }
+    .copper-rod-workspace .search-field input { font-size: 16px; }
+    .copper-rod-workspace .search-field .icon-button { min-width: 40px; min-height: 40px; }
+    .copper-rod-workspace .filter-bar { align-items: stretch; gap: 12px; padding: 0 0 14px; border-bottom: 0; }
+    .copper-rod-workspace .date-range { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; width: 100%; }
+    .copper-rod-workspace .date-range > label { min-width: 0; }
+    .copper-rod-workspace .date-range input { width: 100%; min-height: 44px; min-width: 0; background: #fff; border-radius: 10px; font-size: 16px; }
+    .copper-rod-workspace .date-range > button { grid-column: 1 / -1; min-height: 40px; }
+    .copper-rod-workspace .quick-filters { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+    .copper-rod-workspace .chip-button { min-height: 40px; border-radius: 10px; background: #fff; }
+    .copper-rod-workspace .chip-button.is-selected { color: #234c84; background: #e7eefb; border-color: #cedcf0; }
+    .mobile-record-list { display: grid; gap: 12px; }
+    .mobile-record-card { min-width: 0; padding: 16px; border: 1px solid #e4e9f2; border-radius: 16px; background: #fff; box-shadow: 0 2px 6px #1a365b04; }
+    .mobile-record-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .mobile-record-heading > div { min-width: 0; }
+    .mobile-record-caption { color: #8a96a7; font-size: 10px; font-weight: 600; letter-spacing: .8px; }
+    .mobile-record-heading h3 { margin: 4px 0 0; color: var(--brand-navy); font-size: 19px; font-weight: 650; line-height: 1.3; overflow-wrap: anywhere; }
+    .mobile-record-heading .event-status, .mobile-record-heading .detail-status, .mobile-record-status { flex-shrink: 0; border-radius: 7px; padding: 5px 8px; font-size: 11px; font-weight: 500; }
+    .mobile-record-status { background: #edf3fc; color: #3a628d; }
+    .mobile-record-context { margin: 9px 0 14px; color: #758398; font-size: 12px; line-height: 1.65; overflow-wrap: anywhere; }
+    .mobile-record-context > span { margin: 0 4px; color: #b1bdcc; }
+    .mobile-record-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 13px 0; border-top: 1px solid #f0f3f7; border-bottom: 1px solid #f0f3f7; }
+    .mobile-record-metrics > div { display: grid; gap: 5px; min-width: 0; }
+    .mobile-record-metrics span { color: #7b889c; font-size: 11px; }
+    .mobile-record-metrics strong { color: #253e60; font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+    .mobile-record-metrics strong > small { color: #8b97a7; font-size: 12px; font-weight: 400; }
+    .mobile-record-time { margin: 12px 0 4px; color: #8894a5; font-size: 11px; line-height: 1.6; overflow-wrap: anywhere; }
+    .mobile-record-details > summary { display: flex; align-items: center; justify-content: space-between; min-height: 44px; color: #708198; font-size: 12px; list-style: none; cursor: pointer; }
+    .mobile-record-details > summary::-webkit-details-marker { display: none; }
+    .mobile-record-details > summary > svg { transition: transform .15s ease; }
+    .mobile-record-details[open] > summary > svg { transform: rotate(180deg); }
+    .mobile-record-details dl, .mobile-record-timestamps { display: grid; gap: 12px; margin: 4px 0 14px; font-size: 12px; }
+    .mobile-record-details dl > div, .mobile-record-timestamps > div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 12px; }
+    .mobile-record-details dt, .mobile-record-timestamps dt { color: #8693a5; }
+    .mobile-record-details dd, .mobile-record-timestamps dd { margin: 0; color: #3c506d; text-align: right; overflow-wrap: anywhere; }
+    .mobile-record-timestamps { margin: 14px 0 0; }
+    .copper-rod-workspace .mobile-record-edit { display: flex; justify-content: space-between; width: 100%; padding: 10px 12px; border-radius: 10px; color: #345a89; background: #f0f4fc; border-color: transparent; font-size: 12px; }
+    .copper-rod-workspace .mobile-record-delete { width: 100%; margin-bottom: 12px; border: 1px solid #eedde1; border-radius: 10px; background: #fff; color: #ab3c4f; }
+    .copper-rod-workspace .report-filter-panel { padding: 0; }
+    .copper-rod-workspace .crystal-filter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 14px; }
+    .copper-rod-workspace .report-filter-action { grid-column: 1 / -1; }
+    .copper-rod-workspace .report-filter-action > button { width: 100%; }
+    .copper-rod-workspace .crystal-dashboard-grid { gap: 12px; }
+    .copper-rod-workspace .crystal-chart-head { padding: 14px; gap: 10px; }
+    .copper-rod-workspace .crystal-chart-title h2 { font-size: 14px; font-weight: 600; }
+    .copper-rod-workspace .crystal-chart-count { font-size: 10px; font-weight: 500; }
+    .copper-rod-workspace .crystal-bar-list { padding: 8px 14px 14px; max-height: none; }
+    .copper-rod-workspace .crystal-bar-name, .copper-rod-workspace .crystal-bar-value { font-size: 12px; }
+    .copper-rod-workspace .crystal-chart-empty { min-height: 130px; padding: 20px 16px; }
+    .copper-rod-workspace .stats-grid.stats-four, .copper-rod-workspace .stats-grid.stats-two { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .copper-rod-workspace .stat-card { padding: 14px; gap: 0; }
+    .copper-rod-workspace .stat-icon, .copper-rod-workspace .stat-copy small { display: none; }
+    .copper-rod-workspace .stat-copy > span { color: #8290a3; font-size: 11px; font-weight: 400; line-height: 1.5; }
+    .copper-rod-workspace .stat-copy > strong { margin-top: 6px; color: #294464; font-size: 22px; font-weight: 600; line-height: 1.3; letter-spacing: -.6px; }
+    .mobile-copper-break-page > .crystal-dashboard-grid { order: 4; }
+    .mobile-copper-break-history { order: 3; }
+    .copper-rod-workspace .copper-filter-bar { padding: 0 0 14px; gap: 8px; }
+    .copper-rod-workspace .copper-filter-dates { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; gap: 10px; }
+    .copper-rod-workspace .copper-filter-dates > button { grid-column: 1 / -1; }
+    .copper-rod-workspace .monthly-output-filter { padding: 14px; gap: 12px; }
+    .copper-rod-workspace .monthly-output-filter h2 { font-size: 17px; }
+    .copper-rod-workspace .monthly-output-controls { display: grid; width: 100%; grid-template-columns: 44px minmax(0, 1fr) 44px; gap: 8px; }
+    .copper-rod-workspace .monthly-output-controls .field { min-width: 0; }
+    .copper-rod-workspace .monthly-output-controls > .button-primary { display: inline-flex; grid-column: 1 / -1; }
+    .copper-rod-workspace .monthly-output-controls > button { padding: 0; border-radius: 10px; }
+    .copper-rod-workspace .monthly-output-panel > .panel-head { display: none; }
+    .copper-rod-workspace .monthly-output-table { --shift-width: 28px; --metric-width: 126px; font-size: 11px; }
+    .copper-rod-workspace .monthly-output-table th, .copper-rod-workspace .monthly-output-table td { padding: 9px 7px; }
+    .copper-rod-workspace .board-form-dialog { width: 100%; max-width: 100%; height: 100dvh; max-height: 100dvh; margin: 0; border: 0; border-radius: 0; background: #fff; scroll-padding-top: 80px; }
+    .copper-rod-workspace .board-form-dialog > .panel-head { position: sticky; top: 0; padding: max(14px, env(safe-area-inset-top)) 16px 14px; background: #fff; border-bottom: 1px solid #e8edf4; }
+    .copper-rod-workspace .board-form-dialog .entry-form { padding: 0 16px; }
+    .copper-rod-workspace .board-form-dialog .form-grid.three, .copper-rod-workspace .board-form-dialog .form-grid.two { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+    .copper-rod-workspace .board-form-dialog .field-label { font-size: 12px; }
+    .copper-rod-workspace .board-form-dialog .field input, .copper-rod-workspace .board-form-dialog .field select, .copper-rod-workspace .board-form-dialog .field textarea { border-radius: 10px; min-height: 48px; }
+    .copper-rod-workspace .board-form-dialog .form-footer { position: sticky; bottom: 0; z-index: 3; margin: 0 -16px; padding: 12px 16px max(12px, env(safe-area-inset-bottom)); border-top: 1px solid #e8edf4; background: #fff; }
+    .copper-rod-workspace .board-form-dialog .form-footer > .form-buttons { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; width: 100%; }
+    .copper-rod-workspace .board-form-dialog .inline-calculation { align-items: flex-start; flex-direction: column; gap: 6px; padding: 14px; }
+}

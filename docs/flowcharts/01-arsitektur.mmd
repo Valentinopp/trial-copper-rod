@@ -1,0 +1,19 @@
+flowchart TD
+    A([Pengguna membuka aplikasi]) --> B[Browser mengirim request]
+    B --> C[backend/public/index.php]
+    C --> D[Bootstrap Laravel dan middleware]
+    D --> E[routes/web.php memuat modul]
+    E --> F[Komponen Livewire modul]
+    F --> G[Validasi dan logika bisnis]
+    G --> H[Service atau model Eloquent]
+    H <--> I[(Database aplikasi)]
+    H --> J[Render template Blade]
+    J --> K[Layout dan sidebar bersama]
+    K --> L[Halaman tampil di browser]
+    M[CSS dan JavaScript frontend] --> N[Build dengan Vite]
+    N --> O[Aset di backend/public/build]
+    O --> L
+    L --> P{Pengguna melakukan aksi?}
+    P -->|Ya| Q[Request update Livewire]
+    Q --> F
+    P -->|Tidak| R([Tampilan siap digunakan])

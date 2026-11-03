@@ -1,0 +1,26 @@
+flowchart TD
+    A([Operator membuka Papan Digital]) --> B[/Isi atau ubah catatan LOT/]
+    B --> C[Validasi dan tentukan servo]
+    C --> D{Input valid?}
+    D -->|Tidak| E[Tampilkan kesalahan]
+    E --> B
+    D -->|Ya| F[Simpan board entry]
+    F --> G{Pilih kebutuhan analisis}
+    G -->|Lifetime| H[Ambil catatan crystallizer]
+    H --> I{Waktu awal dan akhir lengkap?}
+    I -->|Ya| J[Hitung durasi dan rekap lifetime]
+    I -->|Tidak| K[Tandai data belum lengkap]
+    G -->|Copper Putus| L[Filter status kejadian putus]
+    L --> M[Isi detail kejadian bila perlu]
+    M --> N[Simpan detail dan tampilkan rekap]
+    G -->|Output| O[Ambil jam operasi dan shift]
+    O --> P[Gabungkan catatan shift legacy relevan]
+    P --> Q[Hitung output dan capaian target]
+    J --> R[Tampilkan laporan]
+    K --> R
+    N --> R
+    Q --> R
+    R --> S{Ekspor laporan?}
+    S -->|Ya| T[Unduh Excel atau PNG]
+    S -->|Tidak| U([Selesai melihat laporan])
+    T --> U

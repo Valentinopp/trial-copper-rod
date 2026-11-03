@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "@neon/config": "^1.9.6",
+    "@neon/env": "^1.6.6"
+  },
+  "name": "irrisnext-project",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix frontend install && npm --prefix frontend run build",
+    "vercel-build": "npm --prefix frontend install && npm --prefix frontend run build",
+    "start": "node scripts/start-app.mjs"
+  },
+  "devDependencies": {
+    "vercel": "^65.10.0"
+  }
+}

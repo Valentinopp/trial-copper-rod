@@ -1,0 +1,22 @@
+flowchart TD
+    A([Mulai pengajuan IC]) --> B[/Pilih material, qty, tanggal kebutuhan/]
+    B --> C{Input pengajuan valid?}
+    C -->|Tidak| B
+    C -->|Ya| D[Simpan purchase request]
+    D --> E[/Purchasing mengisi tanggal pesanan/]
+    E --> F{Tanggal valid dan belum dipesan?}
+    F -->|Tidak| G([Tolak pembuatan pesanan])
+    F -->|Ya| H[Buat satu purchase order]
+    H --> I[/IC mengisi penerimaan aktual/]
+    I --> J{Input penerimaan valid?}
+    J -->|Tidak| I
+    J -->|Ya| K[Kunci pesanan dalam transaksi]
+    K --> L{Token sudah diterima pada PO?}
+    L -->|Ya| M([Kembalikan penerimaan lama])
+    L -->|Tidak| N{Tanggal dan sisa qty sesuai?}
+    N -->|Tidak| I
+    N -->|Ya| O[Simpan penerimaan dan tambah stok]
+    O --> P{Masih ada sisa pesanan?}
+    P -->|Ya| Q[Tunggu pengiriman berikutnya]
+    Q --> I
+    P -->|Tidak| R([Pesanan diterima lengkap])

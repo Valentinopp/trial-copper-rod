@@ -1,0 +1,13 @@
+flowchart TD
+    A([Render indikator]) --> B[Hitung pekerjaan sesuai jenis indikator]
+    B --> C[Hitung penjualan tanpa penyerahan]
+    B --> D[Hitung PO dengan sisa penerimaan]
+    C --> E[Pilih jumlah sesuai kind]
+    D --> E
+    E --> F{Jumlah lebih dari nol?}
+    F -->|Ya| G[Tampilkan titik merah dan label]
+    F -->|Tidak| H[Sembunyikan titik merah]
+    G --> I[Tunggu pemicu pembaruan]
+    H --> I
+    I -->|Polling 30 detik| B
+    I -->|Event penerimaan atau penyerahan| B

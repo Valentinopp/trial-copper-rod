@@ -1,0 +1,19 @@
+flowchart TD
+    A([Pengguna mengirim pertanyaan]) --> B{Pertanyaan kosong?}
+    B -->|Ya| C([Tidak memanggil layanan])
+    B -->|Tidak| D[Tambahkan pesan pengguna]
+    D --> E{API key dikonfigurasi?}
+    E -->|Tidak| F[Tampilkan pesan konfigurasi]
+    E -->|Ya| G[Susun konteks data produksi]
+    G --> H{Penyusunan konteks berhasil?}
+    H -->|Tidak| I([Error diteruskan ke framework])
+    H -->|Ya| J[Pilih key berikutnya]
+    J --> K[[Panggil Gemini dengan konteks]]
+    K --> L{Panggilan berhasil?}
+    L -->|Ya| M[Ambil jawaban atau pesan kosong]
+    L -->|Tidak| N{Masih ada key berikutnya?}
+    N -->|Ya| J
+    N -->|Tidak| O[Tampilkan pesan layanan gagal]
+    F --> P([Tambahkan balasan ke percakapan])
+    M --> P
+    O --> P

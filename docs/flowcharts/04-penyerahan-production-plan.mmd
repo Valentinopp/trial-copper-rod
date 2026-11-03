@@ -1,0 +1,18 @@
+flowchart TD
+    A([Klik Serahkan ke Production Plan]) --> B[Mulai transaksi dan kunci penjualan]
+    B --> C{Penyerahan sudah ada?}
+    C -->|Ya| D([Kembalikan penyerahan yang ada])
+    C -->|Tidak| E{Snapshot kebutuhan sudah ada?}
+    E -->|Ya| H[Kunci material berurutan menurut ID]
+    E -->|Tidak| F{BoM dan spesifikasi valid?}
+    F -->|Tidak| G([Batalkan transaksi dan tampilkan error])
+    F -->|Ya| I[Hitung dan simpan kebutuhan]
+    I --> H
+    H --> J[Hitung ulang stok tersedia]
+    J --> K{Semua bahan mencukupi?}
+    K -->|Tidak| G
+    K -->|Ya| L[Buat production handoff]
+    L --> M[Cadangkan setiap material]
+    M --> N[Commit transaksi]
+    N --> O[Perbarui indikator PPIC]
+    O --> P([Data tersedia di antrean PP])
