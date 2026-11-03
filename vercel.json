@@ -29,6 +29,12 @@
     "LOG_CHANNEL": "stderr",
     "CACHE_STORE": "array",
     "SESSION_DRIVER": "cookie",
-    "VIEW_COMPILED_PATH": "/tmp/storage/framework/views"
+    "VIEW_COMPILED_PATH": "/tmp/storage/framework/views",
+    "APP_STORAGE": "/tmp/storage",
+    "APP_PACKAGES_CACHE": "/tmp/storage/bootstrap/cache/packages.php",
+    "APP_SERVICES_CACHE": "/tmp/storage/bootstrap/cache/services.php",
+    "APP_CONFIG_CACHE": "/tmp/storage/bootstrap/cache/config.php",
+    "APP_ROUTES_CACHE": "/tmp/storage/bootstrap/cache/routes.php",
+    "APP_EVENTS_CACHE": "/tmp/storage/bootstrap/cache/events.php"
   }
 }

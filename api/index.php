@@ -11,11 +11,39 @@ $storageDirs = [
     '/tmp/storage/framework/sessions',
     '/tmp/storage/framework/views',
     '/tmp/storage/logs',
+    '/tmp/storage/bootstrap/cache',
 ];
 
 foreach ($storageDirs as $dir) {
     if (!is_dir($dir)) {
         @mkdir($dir, 0755, true);
+    }
+}
+
+// Redirect cache paths ke /tmp agar dapat ditulis di lingkungan serverless
+$cacheEnv = [
+    'APP_PACKAGES_CACHE' => '/tmp/storage/bootstrap/cache/packages.php',
+    'APP_SERVICES_CACHE' => '/tmp/storage/bootstrap/cache/services.php',
+    'APP_CONFIG_CACHE' => '/tmp/storage/bootstrap/cache/config.php',
+    'APP_ROUTES_CACHE' => '/tmp/storage/bootstrap/cache/routes.php',
+    'APP_EVENTS_CACHE' => '/tmp/storage/bootstrap/cache/events.php',
+];
+
+foreach ($cacheEnv as $k => $v) {
+    $_ENV[$k] = $v;
+    $_SERVER[$k] = $v;
+    putenv("{$k}={$v}");
+}
+
+// Copy pre-built bootstrap cache ke /tmp bila tersedia
+$bootstrapSource = __DIR__ . '/../backend/bootstrap/cache';
+if (is_dir($bootstrapSource)) {
+    foreach (['packages.php', 'services.php'] as $file) {
+        $src = $bootstrapSource . '/' . $file;
+        $dst = '/tmp/storage/bootstrap/cache/' . $file;
+        if (file_exists($src) && !file_exists($dst)) {
+            @copy($src, $dst);
+        }
     }
 }
 
