@@ -47,6 +47,14 @@ if (is_dir($bootstrapSource)) {
     }
 }
 
+if (!extension_loaded('pdo_pgsql')) {
+    http_response_code(500);
+    header('Content-Type: text/plain; charset=utf-8');
+    echo "MISSING EXTENSION: pdo_pgsql is NOT loaded in PHP " . PHP_VERSION . "!\n";
+    echo "Loaded extensions:\n" . implode(", ", get_loaded_extensions()) . "\n";
+    exit;
+}
+
 $vendorPaths = [
     __DIR__ . '/../backend/vendor/autoload.php',
     __DIR__ . '/../vendor/autoload.php',

@@ -21,7 +21,14 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectUsersTo(fn () => route(auth()->user()->homeRoute()));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        // Konfigurasi error khusus dapat ditambahkan di sini.
+        $exceptions->render(function (\Throwable $e) {
+            if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL']) || getenv('VERCEL')) {
+                http_response_code(500);
+                header('Content-Type: text/plain; charset=utf-8');
+                echo "LARAVEL EXCEPTION:\n" . $e->getMessage() . "\n" . $e->getFile() . ":" . $e->getLine() . "\n\n" . $e->getTraceAsString();
+                exit;
+            }
+        });
     })
     ->create();
 
