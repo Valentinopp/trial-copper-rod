@@ -53,7 +53,7 @@
                                 @if($row['shift'] !== '')
                                     <td class="monthly-shift">{{ $row['shift'] }}</td><th scope="row" class="monthly-metric">{{ $row['label'] }}</th>
                                 @else
-                                    <th scope="row" colspan="2" class="monthly-metric monthly-metric-wide">{{ $row['label'] }}</th>
+                                    <th scope="row" colspan="2" class="monthly-metric-wide">{{ $row['label'] }}</th>
                                 @endif
                                 @foreach($row['values'] as $index => $value)
                                     @php $day = $days[$index]; @endphp

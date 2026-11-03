@@ -59,15 +59,16 @@ html:has(.board-form-dialog[open]) { overflow: hidden; }
 .monthly-output-note { padding-top: 16px; }
 .monthly-output-scroll { overflow: auto; max-height: 680px; border-top: 1px solid #344256; border-bottom: 1px solid #344256; }
 .monthly-output-scroll:focus-visible { outline: 2px solid var(--brand-blue); outline-offset: 3px; }
-.monthly-output-table { --shift-width: 50px; --metric-width: 210px; border-collapse: separate; border-spacing: 0; width: max-content; min-width: 100%; font-size: 12px; font-variant-numeric: tabular-nums; color: #203f6c; }
-.monthly-output-table th, .monthly-output-table td { box-sizing: border-box; min-width: 82px; padding: 9px 10px; border-right: 1px solid #6a7687; border-bottom: 1px solid #6a7687; text-align: right; white-space: nowrap; background: #fff; }
-.monthly-output-table thead th { position: sticky; top: 0; z-index: 3; height: 36px; text-align: center; background: #f3f6fb; font-weight: 600; color: var(--brand-navy); }
+.monthly-output-table { --shift-width: 52px; --metric-width: 210px; border-collapse: separate; border-spacing: 0; width: max-content; min-width: 100%; font-size: 12px; font-variant-numeric: tabular-nums; color: #203f6c; }
+.monthly-output-table th, .monthly-output-table td { box-sizing: border-box; min-width: 82px; padding: 9px 10px; border-right: 1px solid #6a7687; border-bottom: 1px solid #6a7687; text-align: right; white-space: nowrap; background: #fff; vertical-align: middle; }
+.monthly-output-table thead th { position: sticky; top: 0; z-index: 3; height: 36px; text-align: center; background: #f3f6fb; font-weight: 600; color: var(--brand-navy); vertical-align: middle; }
 .monthly-output-table thead tr:nth-child(2) th { top: 36px; }
 .monthly-output-table .monthly-month { font-size: 14px; }
-.monthly-output-table .monthly-shift { position: sticky; left: 0; z-index: 2; min-width: var(--shift-width); width: var(--shift-width); text-align: center; }
-.monthly-output-table .monthly-metric { position: sticky; left: var(--shift-width); z-index: 2; min-width: var(--metric-width); width: var(--metric-width); text-align: left; font-weight: 500; border-right: 2px solid #344256; }
-.monthly-output-table .monthly-metric-wide { left: 0; min-width: calc(var(--shift-width) + var(--metric-width)); }
-.monthly-output-table thead .monthly-shift, .monthly-output-table thead .monthly-metric { z-index: 5; text-align: center; }
+.monthly-output-table .monthly-shift { position: sticky; left: 0; z-index: 2; min-width: var(--shift-width); width: var(--shift-width); max-width: var(--shift-width); text-align: center; border-right: none; vertical-align: middle; }
+.monthly-output-table .monthly-metric { position: sticky; left: var(--shift-width); z-index: 2; min-width: var(--metric-width); width: var(--metric-width); max-width: var(--metric-width); text-align: left; font-weight: 500; border-right: 2px solid #344256; vertical-align: middle; }
+.monthly-output-table .monthly-metric-wide { position: sticky; left: 0; z-index: 2; min-width: calc(var(--shift-width) + var(--metric-width)); width: calc(var(--shift-width) + var(--metric-width)); max-width: calc(var(--shift-width) + var(--metric-width)); text-align: left; font-weight: 500; border-right: 2px solid #344256; vertical-align: middle; }
+.monthly-output-table thead .monthly-shift { z-index: 5; text-align: center; border-right: none; vertical-align: middle; }
+.monthly-output-table thead .monthly-metric { z-index: 5; text-align: center; border-right: 2px solid #344256; vertical-align: middle; }
 .monthly-output-table tbody tr:nth-child(odd) > * { background: #fff; }
 .monthly-output-table tbody tr:nth-child(even) > * { background: #f2f3f5; }
 .monthly-output-table .monthly-row-actual > * { font-weight: 700; }
@@ -83,8 +84,8 @@ html:has(.board-form-dialog[open]) { overflow: hidden; }
   .monthly-output-filter { padding: 16px; }
   .monthly-output-controls { width: 100%; }
   .monthly-output-controls .field { flex: 1; }
-  .monthly-output-table { --shift-width: 40px; --metric-width: 168px; font-size: 11px; }
-  .monthly-output-table th, .monthly-output-table td { padding: 8px; min-width: 76px; }
+  .monthly-output-table { --shift-width: 46px; --metric-width: 154px; font-size: 11px; }
+  .monthly-output-table th, .monthly-output-table td { padding: 8px 6px; min-width: 68px; }
 }
 .copper-rod-workspace .page-title h1 { font-weight: 700; }
 .copper-rod-workspace .board-table { min-width: 2040px; table-layout: auto; }

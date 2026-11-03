@@ -236,8 +236,11 @@
     .copper-rod-workspace .monthly-output-controls > .button-primary { display: inline-flex; grid-column: 1 / -1; }
     .copper-rod-workspace .monthly-output-controls > button { padding: 0; border-radius: 10px; }
     .copper-rod-workspace .monthly-output-panel > .panel-head { display: none; }
-    .copper-rod-workspace .monthly-output-table { --shift-width: 28px; --metric-width: 126px; font-size: 11px; }
-    .copper-rod-workspace .monthly-output-table th, .copper-rod-workspace .monthly-output-table td { padding: 9px 7px; }
+    .copper-rod-workspace .monthly-output-table { --shift-width: 46px; --metric-width: 154px; font-size: 11px; }
+    .copper-rod-workspace .monthly-output-table th, .copper-rod-workspace .monthly-output-table td { padding: 8px 6px; vertical-align: middle; }
+    .copper-rod-workspace .monthly-output-table .monthly-shift { min-width: var(--shift-width); width: var(--shift-width); max-width: var(--shift-width); padding-left: 4px; padding-right: 4px; border-right: none; }
+    .copper-rod-workspace .monthly-output-table .monthly-metric { left: var(--shift-width); min-width: var(--metric-width); width: var(--metric-width); max-width: var(--metric-width); border-right: 2px solid #344256; }
+    .copper-rod-workspace .monthly-output-table .monthly-metric-wide { left: 0; min-width: calc(var(--shift-width) + var(--metric-width)); width: calc(var(--shift-width) + var(--metric-width)); max-width: calc(var(--shift-width) + var(--metric-width)); border-right: 2px solid #344256; }
     .copper-rod-workspace .board-form-dialog { width: 100%; max-width: 100%; height: 100dvh; max-height: 100dvh; margin: 0; border: 0; border-radius: 0; background: #fff; scroll-padding-top: 80px; }
     .copper-rod-workspace .board-form-dialog > .panel-head { position: sticky; top: 0; padding: max(14px, env(safe-area-inset-top)) 16px 14px; background: #fff; border-bottom: 1px solid #e8edf4; }
     .copper-rod-workspace .board-form-dialog .entry-form { padding: 0 16px; }
